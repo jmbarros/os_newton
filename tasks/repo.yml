@@ -1,16 +1,25 @@
 ---
   - name: installing ansible application requiriments
     yum: name={{ item }} state=installed
-    state: latest
-    with_items:  
-    - centos-release-openstack-newton     
-    - openstack-packstack
+    #state: latest
+    with_items:
+    - centos-release-openstack-newton
 
+
+  - name: Updating YUM 
+    command: yum update -y
+
+  - name: installing ansible application requiriments
+    yum: name={{ item }} state=installed
+    #state: latest
+    with_items:    
+    - openstack-packstack
 
   - name: starting services and enabling
     service: name={{ item }} state=restarted enabled=yes
     with_items:  
     - network
+    ignore_errors: true
   
 
   - name: stop services and disabling
@@ -18,8 +27,12 @@
     with_items:  
     - firewalld
     - NetworkManager  
+    ignore_errors: true
 
-
+  - name: Installing Openstack Newton ( please, wait.)
+    command: packstack --allinone
+    register: update
+  - debug: var=update.stdout_lines
 
 
 
