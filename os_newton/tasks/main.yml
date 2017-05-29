@@ -1,0 +1,4 @@
+---
+  - include: set_env.yml
+  - include: repo.yml
+# tasks file for os_newton

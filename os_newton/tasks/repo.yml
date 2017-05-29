@@ -1,0 +1,25 @@
+---
+  - name: installing ansible application requiriments
+    yum: name={{ item }} state=installed
+    state: latest
+    with_items:  
+    - centos-release-openstack-newton     
+    - openstack-packstack
+
+
+  - name: starting services and enabling
+    service: name={{ item }} state=restarted enabled=yes
+    with_items:  
+    - network
+  
+
+  - name: stop services and disabling
+    service: name={{ item }} state=stopped enabled=no
+    with_items:  
+    - firewalld
+    - NetworkManager  
+
+
+
+
+

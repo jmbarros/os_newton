@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Joao Marcelo Barros
+  description: Install Openstack Newton 
+  license: BSD
+  min_ansible_version: 1.9
+  platforms:
+  - name: Centos
+    versions:
+    - 7
+  galaxy_tags:
+  - install
+  - services
+  - Openstack
+  - Newton
+  - packstack

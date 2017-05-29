@@ -1,0 +1,3 @@
+---
+  - name: Installing PIP
+    command: cp /etc/ansible/roles/jmbarros.os_newton/files/environment /etc/environment
