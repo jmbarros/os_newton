@@ -5,7 +5,6 @@
     with_items:
     - centos-release-openstack-newton
 
-
   - name: Updating YUM 
     command: yum update -y
 
@@ -15,18 +14,17 @@
     with_items:    
     - openstack-packstack
 
-  - name: starting services and enabling
-    service: name={{ item }} state=restarted enabled=yes
-    with_items:  
-    - network
-    ignore_errors: true
-  
-
   - name: stop services and disabling
     service: name={{ item }} state=stopped enabled=no
     with_items:  
     - firewalld
     - NetworkManager  
+    ignore_errors: true
+
+  - name: starting services and enabling
+    service: name={{ item }} state=restarted enabled=yes
+    with_items:  
+    - network
     ignore_errors: true
 
   - name: Installing Openstack Newton ( please, wait.)
